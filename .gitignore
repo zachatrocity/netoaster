@@ -1,2 +1,22 @@
-toasterdemoapp/bin/Debug/
-toasterdemoapp/obj/Debug/App.g.cs
+# Visual Studio left-overs
+*.suo        # 'user' settings like 'which file is open in Visual Studio'
+*.ncb        # Used for debugging
+*.user
+*.ccscc      # Used for versioning
+*.cache
+
+# Editor left-overs
+*~           # (x)emacs
+*.bak        # Windows related
+\#*\#        # (x)emacs
+*.orig       # Own usage
+
+# Compiled files
+*/bin/
+*/obj/
+*/Obj/       # git is case sensitive
+*/Generated_Code/
+PrecompiledWeb
+*/ClientBin
+# Windows left-overs
+Thumbs.db    # Having images in the source tree generates those files in Explorer
