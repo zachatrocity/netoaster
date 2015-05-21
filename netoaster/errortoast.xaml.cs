@@ -5,7 +5,7 @@ using System.Windows.Threading;
 
 public partial class ErrorToaster
 {
-  public ErrorToaster(string message = "Something terrible may have just happened and you are being notified of it.", string position = "topright")
+  private ErrorToaster(string message, string position)
   {
     InitializeComponent();
 	
@@ -31,6 +31,13 @@ public partial class ErrorToaster
           this.Top = topcorner.Y + this.ActualHeight;
       }
     }));
+  }
+
+  public static void Toast(string message = "Something bad has just happened and you are being notified of it.", string position = "topright")
+  {
+        var err = new ErrorToaster(message, position);
+        err.Show();
+      
   }
 
   private void Storyboard_Completed(object sender, EventArgs e)

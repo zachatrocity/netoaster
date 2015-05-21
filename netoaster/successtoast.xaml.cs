@@ -4,7 +4,7 @@ using System.Windows.Threading;
 
 public partial class SuccessToaster
 {
-  public SuccessToaster(string message = "Something great has finished and you are being notified of it.", string position = "topright")
+  private SuccessToaster(string message, string position)
   {
     InitializeComponent();
 
@@ -30,6 +30,11 @@ public partial class SuccessToaster
     }));
   }
 
+  public static void Toast(string message = "Something amazing has just happened and you are being notified of it.", string position = "topright")
+  {
+        var err = new SuccessToaster(message, position);
+        err.Show();
+  }
   private void Storyboard_Completed(object sender, EventArgs e)
   {
       this.Close();

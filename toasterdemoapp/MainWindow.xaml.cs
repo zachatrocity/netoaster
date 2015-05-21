@@ -28,20 +28,17 @@ namespace toasterdemoapp
 
         private void showerror(object sender, RoutedEventArgs e)
         {
-            var err = new ErrorToaster(MessageText.Text);
-            err.Show();
+            ErrorToaster.Toast(MessageText.Text);
         }
 
         private void showsuccess(object sender, RoutedEventArgs e)
         {
-            var suc = new SuccessToaster(MessageText.Text);
-            suc.Show();
+            SuccessToaster.Toast(MessageText.Text);
         }
 
         private void showwarning(object sender, RoutedEventArgs e)
         {
-            var warn = new WarningToaster(MessageText.Text);
-            warn.Show();
+            WarningToaster.Toast(MessageText.Text);
         }
     }
 }
