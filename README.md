@@ -9,18 +9,11 @@ above netoaster project into your WPF app
 2. create an instance of a toaster, and call .Show()
 
 ```
-var err = new ErrorToaster(MessageText.Text);
-err.Show();
-
+ErrorToaster.Toast("My Error Message!");
 //or
-
-var suc = new SuccessToaster(MessageText.Text, "bottomright");
-suc.Show();
-
+SuccessToaster.Toast("Success message");
 //or
-
-var warn = new WarningToaster("bottomright");
-warn.Show();
+WarningToaster.Toast("Warning message", "bottomright");
 ```
 
 3. Optional parameters (more to come)
