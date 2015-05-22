@@ -12,19 +12,19 @@ above netoaster project into your WPF app
 ErrorToaster.Toast("My Error Message!");
 ``` 
 
-![alt tag](https://raw.github.com/zachatrocity/netoaster/toasterdemoapp/error.png)
+![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/error.png)
 
 ```
 SuccessToaster.Toast("Success message");
 ```
 
-![alt tag](https://raw.github.com/zachatrocity/netoaster/toasterdemoapp/success.png)
+![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/success.png)
 
 ```
 WarningToaster.Toast("Warning message", "bottomright");
 ```
 
-![alt tag](https://raw.github.com/zachatrocity/netoaster/toasterdemoapp/warning.png)
+![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/warning.png)
 
 3. Optional parameters (more to come)
 
