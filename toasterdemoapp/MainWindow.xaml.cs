@@ -28,7 +28,7 @@ namespace toasterdemoapp
 
         private void showerror(object sender, RoutedEventArgs e)
         {
-            ErrorToaster.Toast(MessageText.Text, "bottomright");
+            ErrorToaster.Toast(MessageText.Text);
         }
 
         private void showsuccess(object sender, RoutedEventArgs e)
