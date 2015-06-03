@@ -6,7 +6,6 @@ A .net toaster library for very simple and slightly customizable toaster notific
 1. Install using [nuget](https://www.nuget.org/packages/netoaster/1.0.0 "nuget") or by including the 
 above netoaster project into your WPF app
 
-2. create an instance of a toaster, and call .Show()
 
 ```
 ErrorToaster.Toast("My Error Message!");
