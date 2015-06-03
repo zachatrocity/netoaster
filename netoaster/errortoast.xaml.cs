@@ -24,7 +24,7 @@ public partial class ErrorToaster
       this.Left = bottomcorner.X - this.ActualWidth - 100;
       if (position == "bottomright")
       {
-          this.Top = topcorner.Y - this.ActualHeight;
+          this.Top = bottomcorner.Y - this.ActualHeight;
       }
       else 
       {
