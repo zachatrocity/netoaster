@@ -39,9 +39,4 @@ public partial class SuccessToaster
   {
       this.Close();
   }
-
-  private void closeButton(object sender, RoutedEventArgs e)
-  {
-      this.Close();
-  }
 }

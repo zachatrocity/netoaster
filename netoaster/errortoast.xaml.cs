@@ -44,9 +44,4 @@ public partial class ErrorToaster
   {
       this.Close();
   }
-
-  private void closeButton(object sender, RoutedEventArgs e)
-  {
-      this.Close();
-  }
 }

@@ -9,22 +9,17 @@
 	
 
     <!-- Notification area -->
-    <Border BorderThickness="1" Background="#FF33EC2A" BorderBrush="Black" CornerRadius="10" Opacity="0.75">
+        <Border BorderThickness="1" Background="#4BA253" CornerRadius="3">
       <StackPanel Margin="5">
 		<DockPanel>
 			<StackPanel VerticalAlignment="Center" Margin="5,0">
-				<TextBlock FontSize="48" FontFamily="Global User Interface"><Bold>&#x2714;</Bold></TextBlock>
+				<TextBlock FontSize="48" FontFamily="Global User Interface" Foreground="White"><Bold>&#x2714;</Bold></TextBlock>
 			</StackPanel>
 			<StackPanel>
 				<DockPanel>
-					<TextBlock TextWrapping="Wrap" Margin="5"><Bold><Run Text="Success"/></Bold></TextBlock>
-					<Button Click="closeButton" HorizontalAlignment="Right" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,4">
-						<Button.Content>
-							<TextBlock><Bold>X</Bold></TextBlock>
-						</Button.Content>
-					</Button>
-				</DockPanel>
-      			<TextBlock TextWrapping="Wrap" Margin="5"><Run Name="MessageString"/></TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="5" Foreground="White" FontSize="14"><Bold><Run Text="Success"/></Bold></TextBlock>
+                </DockPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="5" Foreground="White"><Run Name="MessageString"/></TextBlock>
 			</StackPanel>
 		</DockPanel>
       </StackPanel>
