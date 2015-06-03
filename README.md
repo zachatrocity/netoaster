@@ -1,5 +1,6 @@
 # netoaster
-A .net toaster library for very simple and slightly customizable toaster notifications
+A .net toaster library for very simple and slightly customizable toaster notifications.
+Heavily inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr "angular-toastr")
 
 # how to use
 
