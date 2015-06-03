@@ -10,8 +10,8 @@ public partial class WarningToaster
 
     var msgText = (System.Windows.Documents.Run)WarningToasterInstance.FindName("MessageString");
 	msgText.Text = message;
-	
-    Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
+
+    Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
     {
       var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
       var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
