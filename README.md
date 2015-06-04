@@ -2,6 +2,8 @@
 A .net toaster library for very simple and slightly customizable toaster notifications.
 Heavily inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr "angular-toastr")
 
+![alt tag](http://i.imgur.com/yBZ11Pl.gif)
+
 # how to use
 
 1. Install using [nuget](https://www.nuget.org/packages/netoaster/1.0.4 "nuget") or by including the 
