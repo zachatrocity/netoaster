@@ -23,30 +23,29 @@ SuccessToaster.Toast("Success message");
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/success.png)
 
 ```
-WarningToaster.Toast("Warning message", "bottomright");
+WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
 ```
 
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/warning.png)
 
 3. Optional parameters (more to come)
-
 	* message - the text to display in the toaster
 	* position - the position to show the toaster, like (default is PrimaryScreenBottomRight) 
-		*shout out to [jublin](https://github.com/jublin) for the enum support! 
-		*PrimaryScreenBottomRight
-        *PrimaryScreenTopRight
-        *PrimaryScreenBottomLeft
-        *PrimaryScreenTopLeft
-        *ApplicationBottomRight
-        *ApplicationTopRight
-        *ApplicationBottomLeft
-        *ApplicationTopLeft
-    * margin - the desired distance away from the corner
+    	  * shout out to [jublin](https://github.com/jublin) for the enum support! 
+    	  * PrimaryScreenBottomRight
+    	  * PrimaryScreenTopRight
+    	  * PrimaryScreenBottomLeft
+    	  * PrimaryScreenTopLeft
+    	  * ApplicationBottomRight
+    	  * ApplicationTopRight
+    	  * ApplicationBottomLeft
+    	  * ApplicationTopLeft
+	* margin - the desired distance away from the corner
 
 #To do:
-	* add optional colors
-	* add more animations
-	* for feature requests open a new issue
+* add optional colors
+* add more animations
+* for feature requests open a new issue
 
 
 #Contributers
