@@ -31,14 +31,27 @@ WarningToaster.Toast("Warning message", "bottomright");
 3. Optional parameters (more to come)
 
 	* message - the text to display in the toaster
-	* position - the position to show the toaster, like "bottomright" (default is topright)
+	* position - the position to show the toaster, like (default is PrimaryScreenBottomRight) 
+		*shout out to [jublin](https://github.com/jublin) for the enum support! 
+		*PrimaryScreenBottomRight
+        *PrimaryScreenTopRight
+        *PrimaryScreenBottomLeft
+        *PrimaryScreenTopLeft
+        *ApplicationBottomRight
+        *ApplicationTopRight
+        *ApplicationBottomLeft
+        *ApplicationTopLeft
+    * margin - the desired distance away from the corner
 
 #To do:
-	* add more positions
 	* add optional colors
 	* add more animations
 	* for feature requests open a new issue
 
+
+#Contributers
+*myself
+*[jublin](https://github.com/jublin)
 	
 #Concept 
 skeleton of code came from [this](http://stackoverflow.com/questions/3034741/create-popup-toaster-notifications-in-windows-with-net/3035755#3035755, "this") stackoverflow post

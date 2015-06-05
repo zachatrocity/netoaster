@@ -4,7 +4,7 @@ using netoaster;
 
 public partial class WarningToaster
 {
-    private WarningToaster(string message, ToasterPosition position)
+    private WarningToaster(string message, ToasterPosition position, double margin)
   {
     InitializeComponent();
 
@@ -13,16 +13,17 @@ public partial class WarningToaster
 
     Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
     {
-        var topLeftDict = ToastSupport.GetTopandLeft(position, this);
+        var topLeftDict = ToastSupport.GetTopandLeft(position, this, margin);
         Top = topLeftDict["Top"];
         Left = topLeftDict["Left"];
     }));
   }
 
     public static void Toast(string message = "Something terrible may have just happened and you are being notified of it.",
-            ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight)
+            ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight,
+            double margin = 10.0)
     {
-        var err = new WarningToaster(message, position);
+        var err = new WarningToaster(message, position, margin);
         err.Show();
     }
 

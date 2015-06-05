@@ -18,7 +18,7 @@ namespace toasterdemoapp
 
         private void showerror(object sender, RoutedEventArgs e)
         {
-            ErrorToaster.Toast(MessageText.Text, (ToasterPosition)selectbox.SelectedItem);
+            ErrorToaster.Toast(MessageText.Text, (ToasterPosition)selectbox.SelectedItem, 20.0);
         }
 
         private void showsuccess(object sender, RoutedEventArgs e)

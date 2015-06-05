@@ -19,7 +19,7 @@ namespace netoaster
     }
     class ToastSupport
     {
-        public static Dictionary<string, double> GetTopandLeft(ToasterPosition positionSelection, Window windowRef)
+        public static Dictionary<string, double> GetTopandLeft(ToasterPosition positionSelection, Window windowRef, double margin)
         {
             var retDict = new Dictionary<string, double>();
             Rectangle workingArea;
@@ -63,27 +63,27 @@ namespace netoaster
                 case ToasterPosition.PrimaryScreenBottomLeft:
                     workingArea = screen.WorkingArea;
                     bottomcorner = transform.Transform(new Point(workingArea.Left, workingArea.Bottom));
-                    retDict["Left"] = bottomcorner.X + 10;
-                    retDict["Top"] = bottomcorner.Y - windowRef.ActualHeight;
+                    retDict["Left"] = bottomcorner.X + margin;
+                    retDict["Top"] = bottomcorner.Y - windowRef.ActualHeight - margin;
                     break;
                 case ToasterPosition.PrimaryScreenBottomRight:
                     workingArea = screen.WorkingArea;
                     bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
-                    retDict["Left"] = bottomcorner.X - windowRef.ActualWidth - 10;
-                    retDict["Top"] = bottomcorner.Y - windowRef.ActualHeight;
+                    retDict["Left"] = bottomcorner.X - windowRef.ActualWidth - margin;
+                    retDict["Top"] = bottomcorner.Y - windowRef.ActualHeight - margin;
                     break;
                 case ToasterPosition.PrimaryScreenTopLeft:
                     workingArea = screen.WorkingArea;
                     topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
-                    retDict["Left"] = 10;
-                    retDict["Top"] = topcorner.Y;
+                    retDict["Left"] = margin;
+                    retDict["Top"] = topcorner.Y + margin;
                     break;
                 case ToasterPosition.PrimaryScreenTopRight:
                     workingArea = screen.WorkingArea;
                     bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
                     topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
-                    retDict["Left"] = bottomcorner.X - windowRef.ActualWidth - 10;
-                    retDict["Top"] = topcorner.Y;
+                    retDict["Left"] = bottomcorner.X - windowRef.ActualWidth - margin;
+                    retDict["Top"] = topcorner.Y + margin;
                     break;
                 case ToasterPosition.ApplicationBottomRight:
                     workingArea = new Rectangle
