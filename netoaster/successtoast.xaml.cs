@@ -1,42 +1,33 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Threading;
+using netoaster;
 
 public partial class SuccessToaster
 {
-  private SuccessToaster(string message, string position)
-  {
-    InitializeComponent();
-
-    var msgText = (System.Windows.Documents.Run)SuccessToasterInstance.FindName("MessageString");
-	msgText.Text = message;
-
-    Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
+    private SuccessToaster(string message, ToasterPosition position)
     {
-      var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
-      var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
-      var bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
-      var topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
+        InitializeComponent();
 
-      this.Left = bottomcorner.X - this.ActualWidth - 100;
-      if (position == "bottomright")
-      {
-          this.Top = bottomcorner.Y - this.ActualHeight;
-      }
-      else 
-      {
-          this.Top = topcorner.Y + this.ActualHeight;
-      }
-    }));
-  }
+        var msgText = (System.Windows.Documents.Run) SuccessToasterInstance.FindName("MessageString");
+        if (msgText != null) msgText.Text = message ?? string.Empty;
 
-  public static void Toast(string message = "Something amazing has just happened and you are being notified of it.", string position = "topright")
-  {
+        Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
+        {
+            var topLeftDict = ToastSupport.GetTopandLeft(position, this);
+            Top = topLeftDict["Top"];
+            Left = topLeftDict["Left"];
+        }));
+    }
+
+    public static void Toast(string message = "Something terrible may have just happened and you are being notified of it.",
+        ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight)
+    {
         var err = new SuccessToaster(message, position);
         err.Show();
-  }
-  private void Storyboard_Completed(object sender, EventArgs e)
-  {
-      this.Close();
-  }
+    }
+
+    private void Storyboard_Completed(object sender, EventArgs e)
+    {
+        this.Close();
+    }
 }
