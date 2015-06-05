@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
+﻿using System.Windows;
+using netoaster;
 
 namespace toasterdemoapp
 {
@@ -24,21 +11,24 @@ namespace toasterdemoapp
         public MainWindow()
         {
             InitializeComponent();
+            selectbox.SelectedIndex = 0;
         }
+
+        public ToasterPosition CurrentPopupPosition { get; set; }
 
         private void showerror(object sender, RoutedEventArgs e)
         {
-            ErrorToaster.Toast(MessageText.Text, "bottomright");
+            ErrorToaster.Toast(MessageText.Text, (ToasterPosition)selectbox.SelectedItem);
         }
 
         private void showsuccess(object sender, RoutedEventArgs e)
         {
-            SuccessToaster.Toast(MessageText.Text);
+            SuccessToaster.Toast(MessageText.Text, (ToasterPosition)selectbox.SelectedItem);
         }
 
         private void showwarning(object sender, RoutedEventArgs e)
         {
-            WarningToaster.Toast(MessageText.Text);
+            WarningToaster.Toast(MessageText.Text, (ToasterPosition)selectbox.SelectedItem);
         }
     }
 }

@@ -1,42 +1,29 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Threading;
+using netoaster;
 
 public partial class WarningToaster
 {
-    private WarningToaster(string message, string position)
+    private WarningToaster(string message, ToasterPosition position)
   {
     InitializeComponent();
 
     var msgText = (System.Windows.Documents.Run)WarningToasterInstance.FindName("MessageString");
-	msgText.Text = message;
+    if (msgText != null) msgText.Text = message ?? string.Empty;
 
     Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
     {
-      var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
-      var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
-      var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
-
-      var bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
-      var topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
-
-      this.Left = bottomcorner.X - this.ActualWidth - 100;
-      if (position == "bottomright")
-      {
-          this.Top = bottomcorner.Y - this.ActualHeight;
-      }
-      else 
-      {
-          this.Top = topcorner.Y + this.ActualHeight;
-      }
+        var topLeftDict = ToastSupport.GetTopandLeft(position, this);
+        Top = topLeftDict["Top"];
+        Left = topLeftDict["Left"];
     }));
   }
 
-    public static void Toast(string message = "Something terrible may have just happened and you are being notified of it.", string position = "topright")
-    { 
+    public static void Toast(string message = "Something terrible may have just happened and you are being notified of it.",
+            ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight)
+    {
         var err = new WarningToaster(message, position);
         err.Show();
-       
     }
 
     private void Storyboard_Completed(object sender, EventArgs e)

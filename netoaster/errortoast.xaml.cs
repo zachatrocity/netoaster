@@ -1,47 +1,34 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Threading;
-
+using netoaster;
 
 public partial class ErrorToaster
 {
-  private ErrorToaster(string message, string position)
-  {
-    InitializeComponent();
-	
-	var msgText = (System.Windows.Documents.Run)ErrorToasterInstance.FindName("MessageString");
-	msgText.Text = message;
-    
-    Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
+    private ErrorToaster(string message, ToasterPosition position)
     {
-      var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
-      var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
-      var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
+        InitializeComponent();
 
-      var bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
-      var topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
+        var msgText = (System.Windows.Documents.Run) ErrorToasterInstance.FindName("MessageString");
+        if (msgText != null) msgText.Text = message ?? string.Empty;
 
-      this.Left = bottomcorner.X - this.ActualWidth - 100;
-      if (position == "bottomright")
-      {
-          this.Top = bottomcorner.Y - this.ActualHeight;
-      }
-      else 
-      {
-          this.Top = topcorner.Y + this.ActualHeight;
-      }
-    }));
-  }
+        Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
+        {
+            var topLeftDict = ToastSupport.GetTopandLeft(position, this);
+            Top = topLeftDict["Top"];
+            Left = topLeftDict["Left"];
+        }));
+    }
 
-  public static void Toast(string message = "Something bad has just happened and you are being notified of it.", string position = "topright")
-  {
+    public static void Toast(
+        string message = "Something terrible may have just happened and you are being notified of it.",
+        ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight)
+    {
         var err = new ErrorToaster(message, position);
         err.Show();
-      
-  }
+    }
 
-  private void Storyboard_Completed(object sender, EventArgs e)
-  {
-      this.Close();
-  }
+    private void Storyboard_Completed(object sender, EventArgs e)
+    {
+        this.Close();
+    }
 }
