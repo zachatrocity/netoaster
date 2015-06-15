@@ -9,6 +9,7 @@ Heavily inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr
 1. Install using [nuget](https://www.nuget.org/packages/netoaster/1.0.5 "nuget") or by including the 
 above netoaster project into your WPF app
 
+2. Call it
 
 ```
 ErrorToaster.Toast("My Error Message!");
