@@ -54,7 +54,6 @@ WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
 
 #To do:
 * add optional colors
-* add more animations
 * for feature requests open a new issue
 
 
