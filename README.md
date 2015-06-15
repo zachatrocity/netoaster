@@ -17,7 +17,7 @@ ErrorToaster.Toast("My Error Message!");
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/error.png)
 
 ```
-SuccessToaster.Toast("Success message");
+SuccessToaster.Toast("Success message", animation: ToasterAnimation.FadeIn);
 ```
 
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/success.png)
@@ -31,7 +31,7 @@ WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
 3. Optional parameters (more to come)
 	* message - the text to display in the toaster
 	* position - the position to show the toaster, like (default is PrimaryScreenBottomRight) 
-    	  * shout out to [jublin](https://github.com/jublin) for the enum support! 
+    	  * shout out to [jublin](https://github.com/jublin) 
     	  * PrimaryScreenBottomRight
     	  * PrimaryScreenTopRight
     	  * PrimaryScreenBottomLeft
@@ -40,6 +40,16 @@ WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
     	  * ApplicationTopRight
     	  * ApplicationBottomLeft
     	  * ApplicationTopLeft
+    * animation - the style of the animation
+          * FadeIn
+          * SlideInFromRight (default)
+          * SlideInFromLeft
+          * SlideInFromTop
+          * SlideInFromBottom
+          * GrowFromRight
+          * GrowFromLeft
+          * GrowFromTop
+          * GrowFromBottom
 	* margin - the desired distance away from the corner
 
 #To do:

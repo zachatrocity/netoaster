@@ -5,7 +5,7 @@
   Title="WarningToast" Width="300" SizeToContent="Height"
   WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
-  <Grid Name="WarningToasterInstance" RenderTransformOrigin="0,1" >
+  <Grid Name="WarningToasterInstance">
 	
 
     <!-- Notification area -->
@@ -25,24 +25,7 @@
       </StackPanel>
     </Border>
 
-    <!-- Animation -->
-    <Grid.Triggers>
-      <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-        <BeginStoryboard>
-          <Storyboard Completed="Storyboard_Completed">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-              <SplineDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
-              <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-              <SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
-              <SplineDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-          </Storyboard>
-        </BeginStoryboard>
-      </EventTrigger>
-    </Grid.Triggers>
-
+    
     <Grid.RenderTransform>
       <ScaleTransform ScaleY="1" />
     </Grid.RenderTransform>

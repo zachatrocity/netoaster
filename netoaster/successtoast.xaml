@@ -5,11 +5,11 @@
   Title="SuccessToast" Width="300" SizeToContent="Height"
   WindowStyle="None" AllowsTransparency="True" Background="Transparent">
 
-  <Grid Name="SuccessToasterInstance" RenderTransformOrigin="0,1" >
+  <Grid Name="SuccessToasterInstance">
 	
 
     <!-- Notification area -->
-        <Border BorderThickness="1" Background="#4BA253" CornerRadius="3">
+      <Border BorderThickness="1" Background="#4BA253" CornerRadius="3">
       <StackPanel Margin="5">
 		<DockPanel>
 			<StackPanel VerticalAlignment="Center" Margin="5,0">
@@ -25,26 +25,8 @@
       </StackPanel>
     </Border>
 
-    <!-- Animation -->
-    <Grid.Triggers>
-      <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-        <BeginStoryboard>
-          <Storyboard Completed="Storyboard_Completed">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-              <SplineDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
-              <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-              <SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
-              <SplineDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-          </Storyboard>
-        </BeginStoryboard>
-      </EventTrigger>
-    </Grid.Triggers>
-
     <Grid.RenderTransform>
-      <ScaleTransform ScaleY="1" />
+        <ScaleTransform ScaleY="1" />
     </Grid.RenderTransform>
 
   </Grid>
