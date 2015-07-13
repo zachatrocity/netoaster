@@ -16,7 +16,7 @@ public partial class ErrorToaster
         story.Completed += (sender, args) => { this.Close(); };
         story.Begin(ErrorToasterInstance);
 
-        Dispatcher.BeginInvoke(DispatcherPriority.DataBind, new Action(() =>
+        Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
         {
             var topLeftDict = ToastSupport.GetTopandLeft(position, this, margin);
             Top = topLeftDict["Top"];
