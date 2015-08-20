@@ -1,40 +1,43 @@
 ﻿using System;
-using System.Windows.Media.Animation;
+using System.Windows;
 using System.Windows.Threading;
-using netoaster;
 
-public partial class WarningToaster
+namespace netoaster
 {
-    private WarningToaster(string message, ToasterPosition position, ToasterAnimation animation, double margin)
-  {
-    InitializeComponent();
-
-    var msgText = (System.Windows.Documents.Run)WarningToasterInstance.FindName("MessageString");
-    if (msgText != null) msgText.Text = message ?? string.Empty;
-
-    Storyboard story = ToastSupport.GetAnimation(animation, ref WarningToasterInstance);
-    story.Completed += (sender, args) => { this.Close(); };
-    story.Begin(WarningToasterInstance);
-
-    Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+    public partial class WarningToaster
     {
-        var topLeftDict = ToastSupport.GetTopandLeft(position, this, margin);
-        Top = topLeftDict["Top"];
-        Left = topLeftDict["Left"];
-    }));
-  }
+        private WarningToaster(FrameworkElement owner, string title, string message, ToasterPosition position,
+            ToasterAnimation animation, double margin)
+        {
+            InitializeComponent();
 
-    public static void Toast(string message = "Something terrible may have just happened and you are being notified of it.",
-            ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight,ToasterAnimation animation = ToasterAnimation.SlideInFromRight,
+            ToasterTitle = title;
+            Message = message ?? string.Empty;
+
+            var story = ToastSupport.GetAnimation(animation, ref WarningToasterInstance);
+            story.Completed += (sender, args) => { Close(); };
+            story.Begin(WarningToasterInstance);
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            {
+                var topLeftDict = ToastSupport.GetTopandLeft(position, this, margin);
+                Top = topLeftDict["Top"];
+                Left = topLeftDict["Left"];
+            }));
+
+            owner.Unloaded += Owner_Unloaded;
+        }
+
+        public static void Toast(
+            Window owner,
+            string title = "Warning",
+            string message = "Something terrible may have just happened and you are being notified of it.",
+            ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight,
+            ToasterAnimation animation = ToasterAnimation.SlideInFromRight,
             double margin = 10.0)
-    {
-        var err = new WarningToaster(message, position, animation, margin);
-        err.Show();
+        {
+            var toaster = new WarningToaster(owner, title, message, position, animation, margin);
+            toaster.Show();
+        }
     }
-
-    private void Storyboard_Completed(object sender, EventArgs e)
-    {
-        this.Close();
-    }
-
 }

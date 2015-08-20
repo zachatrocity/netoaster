@@ -23,7 +23,7 @@ namespace netoaster
         ApplicationTopLeft,
     }
 
-    
+
     public enum ToasterAnimation
     {
         FadeIn,
@@ -36,12 +36,12 @@ namespace netoaster
         GrowFromTop,
         GrowFromBottom,
     }
-    class ToastSupport
+
+    internal class ToastSupport
     {
         public static StoryBoard GetAnimation(ToasterAnimation animation, ref Grid toaster)
         {
-            Storyboard story = new Storyboard();
-            SplineDoubleKeyFrame frame = new SplineDoubleKeyFrame();
+            var story = new Storyboard();
 
             switch (animation)
             {
@@ -56,87 +56,147 @@ namespace netoaster
                     story.Children.Add(fadeout);
                     break;
                 case ToasterAnimation.SlideInFromRight:
-                    toaster.RenderTransformOrigin = new Point(1,0);
-                    toaster.RenderTransform = new TranslateTransform(300, 0);
-                    DoubleAnimationUsingKeyFrames slideinfromright = new DoubleAnimationUsingKeyFrames();
-                    slideinfromright.KeyFrames.Add(new SplineDoubleKeyFrame(300, TimeSpan.FromSeconds(0)));
-                    slideinfromright.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-                    slideinfromright.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(4)));
-                    slideinfromright.KeyFrames.Add(new SplineDoubleKeyFrame(300, TimeSpan.FromSeconds(5)));
-                    Storyboard.SetTargetProperty(slideinfromright, new PropertyPath("RenderTransform.(TranslateTransform.X)"));
-                    story.Children.Add(slideinfromright);
+                    toaster.RenderTransformOrigin = new Point(1, 0);
+                    toaster.RenderTransform = new TranslateTransform(300.0, 0);
+                    var slideinFromRightAnimation = new DoubleAnimationUsingKeyFrames
+                    {
+                        Duration = new Duration(TimeSpan.FromSeconds(6)),
+                        KeyFrames = new DoubleKeyFrameCollection
+                        {
+                            new EasingDoubleKeyFrame(300.0, KeyTime.FromPercent(0)),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.1), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseInOut
+                            }),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.8)),
+                            new EasingDoubleKeyFrame(300.0, KeyTime.FromPercent(0.9), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseOut
+                            })
+                        }
+                    };
+
+                    Storyboard.SetTargetProperty(slideinFromRightAnimation,
+                        new PropertyPath("RenderTransform.(TranslateTransform.X)"));
+                    story.Children.Add(slideinFromRightAnimation);
                     break;
                 case ToasterAnimation.SlideInFromLeft:
-                    toaster.RenderTransformOrigin = new Point(0,1);
-                    toaster.RenderTransform = new TranslateTransform(300, 0);
-                    DoubleAnimationUsingKeyFrames slideinfromleft = new DoubleAnimationUsingKeyFrames();
-                    slideinfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(-300, TimeSpan.FromSeconds(0)));
-                    slideinfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-                    slideinfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(4)));
-                    slideinfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(-300, TimeSpan.FromSeconds(5)));
-                    Storyboard.SetTargetProperty(slideinfromleft, new PropertyPath("RenderTransform.(TranslateTransform.X)"));
-                    story.Children.Add(slideinfromleft);
+                    toaster.RenderTransformOrigin = new Point(0, 1);
+                    toaster.RenderTransform = new TranslateTransform(-300.0, 0);
+                    var slideinFromLeftAnimation = new DoubleAnimationUsingKeyFrames
+                    {
+                        Duration = new Duration(TimeSpan.FromSeconds(6)),
+                        KeyFrames = new DoubleKeyFrameCollection
+                        {
+                            new EasingDoubleKeyFrame(-300.0, KeyTime.FromPercent(0)),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.1), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseInOut
+                            }),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.8)),
+                            new EasingDoubleKeyFrame(-300.0, KeyTime.FromPercent(0.9), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseOut
+                            })
+                        }
+                    };
+
+                    Storyboard.SetTargetProperty(slideinFromLeftAnimation,
+                        new PropertyPath("RenderTransform.(TranslateTransform.X)"));
+                    story.Children.Add(slideinFromLeftAnimation);
                     break;
                 case ToasterAnimation.SlideInFromTop:
-                    toaster.RenderTransformOrigin = new Point(0,1);
+                    toaster.RenderTransformOrigin = new Point(0, 1);
                     toaster.RenderTransform = new TranslateTransform(0, 300);
-                    DoubleAnimationUsingKeyFrames slideinfromtop = new DoubleAnimationUsingKeyFrames();
-                    slideinfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(-300, TimeSpan.FromSeconds(0)));
-                    slideinfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-                    slideinfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(4)));
-                    slideinfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(-300, TimeSpan.FromSeconds(5)));
-                    Storyboard.SetTargetProperty(slideinfromtop, new PropertyPath("RenderTransform.(TranslateTransform.Y)"));
-                    story.Children.Add(slideinfromtop);
+                    var slideinFromTopAnimation = new DoubleAnimationUsingKeyFrames
+                    {
+                        Duration = new Duration(TimeSpan.FromSeconds(6)),
+                        KeyFrames = new DoubleKeyFrameCollection
+                        {
+                            new EasingDoubleKeyFrame(-300.0, KeyTime.FromPercent(0)),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.1), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseInOut
+                            }),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.8)),
+                            new EasingDoubleKeyFrame(-300.0, KeyTime.FromPercent(0.9), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseOut
+                            })
+                        }
+                    };
+
+                    Storyboard.SetTargetProperty(slideinFromTopAnimation,
+                        new PropertyPath("RenderTransform.(TranslateTransform.Y)"));
+                    story.Children.Add(slideinFromTopAnimation);
                     break;
                 case ToasterAnimation.SlideInFromBottom:
-                    toaster.RenderTransformOrigin = new Point(0,1);
+                    toaster.RenderTransformOrigin = new Point(0, 1);
                     toaster.RenderTransform = new TranslateTransform(0, -300);
-                    DoubleAnimationUsingKeyFrames slideinfrombottom = new DoubleAnimationUsingKeyFrames();
-                    slideinfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(300, TimeSpan.FromSeconds(0)));
-                    slideinfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(1)));
-                    slideinfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(4)));
-                    slideinfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(300, TimeSpan.FromSeconds(5)));
-                    Storyboard.SetTargetProperty(slideinfrombottom, new PropertyPath("RenderTransform.(TranslateTransform.Y)"));
-                    story.Children.Add(slideinfrombottom);
+                    var slideinFromBottomAnimation = new DoubleAnimationUsingKeyFrames
+                    {
+                        Duration = new Duration(TimeSpan.FromSeconds(6)),
+                        KeyFrames = new DoubleKeyFrameCollection
+                        {
+                            new EasingDoubleKeyFrame(300.0, KeyTime.FromPercent(0)),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.1), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseInOut
+                            }),
+                            new EasingDoubleKeyFrame(0.0, KeyTime.FromPercent(0.8)),
+                            new EasingDoubleKeyFrame(300.0, KeyTime.FromPercent(0.9), new ExponentialEase
+                            {
+                                EasingMode = EasingMode.EaseOut
+                            })
+                        }
+                    };
+
+                    Storyboard.SetTargetProperty(slideinFromBottomAnimation,
+                        new PropertyPath("RenderTransform.(TranslateTransform.Y)"));
+                    story.Children.Add(slideinFromBottomAnimation);
                     break;
                 case ToasterAnimation.GrowFromRight:
-                    toaster.RenderTransformOrigin = new Point(1,0);
+                    toaster.RenderTransformOrigin = new Point(1, 0);
                     DoubleAnimationUsingKeyFrames growfromright = new DoubleAnimationUsingKeyFrames();
                     growfromright.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
                     growfromright.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(1.5)));
                     growfromright.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(4)));
                     growfromright.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(5.5)));
-                    Storyboard.SetTargetProperty(growfromright, new PropertyPath("RenderTransform.(ScaleTransform.ScaleX)"));
+                    Storyboard.SetTargetProperty(growfromright,
+                        new PropertyPath("RenderTransform.(ScaleTransform.ScaleX)"));
                     story.Children.Add(growfromright);
                     break;
                 case ToasterAnimation.GrowFromLeft:
-                    toaster.RenderTransformOrigin = new Point(0,1);
+                    toaster.RenderTransformOrigin = new Point(0, 1);
                     DoubleAnimationUsingKeyFrames growfromleft = new DoubleAnimationUsingKeyFrames();
                     growfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
                     growfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(1.5)));
                     growfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(4)));
                     growfromleft.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(5.5)));
-                    Storyboard.SetTargetProperty(growfromleft, new PropertyPath("RenderTransform.(ScaleTransform.ScaleX)"));
+                    Storyboard.SetTargetProperty(growfromleft,
+                        new PropertyPath("RenderTransform.(ScaleTransform.ScaleX)"));
                     story.Children.Add(growfromleft);
                     break;
                 case ToasterAnimation.GrowFromTop:
-                    toaster.RenderTransformOrigin = new Point(1,0);
+                    toaster.RenderTransformOrigin = new Point(1, 0);
                     DoubleAnimationUsingKeyFrames growfromtop = new DoubleAnimationUsingKeyFrames();
                     growfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
                     growfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(1.5)));
                     growfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(4)));
                     growfromtop.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(5.5)));
-                    Storyboard.SetTargetProperty(growfromtop, new PropertyPath("RenderTransform.(ScaleTransform.ScaleY)"));
+                    Storyboard.SetTargetProperty(growfromtop,
+                        new PropertyPath("RenderTransform.(ScaleTransform.ScaleY)"));
                     story.Children.Add(growfromtop);
                     break;
                 case ToasterAnimation.GrowFromBottom:
-                    toaster.RenderTransformOrigin = new Point(0,1);
+                    toaster.RenderTransformOrigin = new Point(0, 1);
                     DoubleAnimationUsingKeyFrames growfrombottom = new DoubleAnimationUsingKeyFrames();
                     growfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(0)));
                     growfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(1.5)));
                     growfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(1, TimeSpan.FromSeconds(4)));
                     growfrombottom.KeyFrames.Add(new SplineDoubleKeyFrame(0, TimeSpan.FromSeconds(5.5)));
-                    Storyboard.SetTargetProperty(growfrombottom, new PropertyPath("RenderTransform.(ScaleTransform.ScaleY)"));
+                    Storyboard.SetTargetProperty(growfrombottom,
+                        new PropertyPath("RenderTransform.(ScaleTransform.ScaleY)"));
                     story.Children.Add(growfrombottom);
                     break;
             }
@@ -144,7 +204,8 @@ namespace netoaster
             return story;
         }
 
-        public static Dictionary<string, double> GetTopandLeft(ToasterPosition positionSelection, Window windowRef, double margin)
+        public static Dictionary<string, double> GetTopandLeft(ToasterPosition positionSelection, Window windowRef,
+            double margin)
         {
             var retDict = new Dictionary<string, double>();
             Rectangle workingArea;
@@ -152,12 +213,12 @@ namespace netoaster
             Point topcorner;
 
             workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
-            
+
             var currentAppWindow = Application.Current.MainWindow;
             //Get the Currently running applications screen.
             var screen = System.Windows.Forms.Screen.FromHandle(
                 new System.Windows.Interop.WindowInteropHelper(currentAppWindow).Handle);
-            
+
             var workingPosition = positionSelection;
             //Application being maximized causes some wonky crap sometimes. 
             //May as well use Primary Screen. 
@@ -179,8 +240,7 @@ namespace netoaster
                         break;
                 }
             }
-            var transform = getTransform(windowRef);
-            
+            var transform = GetTransform(windowRef);
             retDict.Add("Left", 0);
             retDict.Add("Top", 0);
             switch (workingPosition)
@@ -213,10 +273,10 @@ namespace netoaster
                 case ToasterPosition.ApplicationBottomRight:
                     workingArea = new Rectangle
                         (
-                        (int)currentAppWindow.Left, (int)currentAppWindow.Top,
-                        (int)currentAppWindow.ActualWidth, (int)currentAppWindow.ActualHeight
+                        (int) currentAppWindow.Left, (int) currentAppWindow.Top,
+                        (int) currentAppWindow.ActualWidth, (int) currentAppWindow.ActualHeight
                         );
-                   
+
                     bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
                     retDict["Left"] = bottomcorner.X - windowRef.ActualWidth - 5;
                     retDict["Top"] = bottomcorner.Y - windowRef.ActualHeight;
@@ -224,8 +284,8 @@ namespace netoaster
                 case ToasterPosition.ApplicationBottomLeft:
                     workingArea = new Rectangle
                         (
-                        (int)currentAppWindow.Left, (int)currentAppWindow.Top,
-                        (int)currentAppWindow.ActualWidth, (int)currentAppWindow.ActualHeight
+                        (int) currentAppWindow.Left, (int) currentAppWindow.Top,
+                        (int) currentAppWindow.ActualWidth, (int) currentAppWindow.ActualHeight
                         );
                     bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
                     retDict["Left"] = currentAppWindow.Left + 5;
@@ -234,8 +294,8 @@ namespace netoaster
                 case ToasterPosition.ApplicationTopLeft:
                     workingArea = new Rectangle
                         (
-                        (int)currentAppWindow.Left, (int)currentAppWindow.Top,
-                        (int)currentAppWindow.ActualWidth, (int)currentAppWindow.ActualHeight
+                        (int) currentAppWindow.Left, (int) currentAppWindow.Top,
+                        (int) currentAppWindow.ActualWidth, (int) currentAppWindow.ActualHeight
                         );
                     bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
                     topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
@@ -245,13 +305,13 @@ namespace netoaster
                 case ToasterPosition.ApplicationTopRight:
                     workingArea = new Rectangle
                         (
-                        (int)currentAppWindow.Left, (int)currentAppWindow.Top,
-                        (int)currentAppWindow.ActualWidth, (int)currentAppWindow.ActualHeight
+                        (int) currentAppWindow.Left, (int) currentAppWindow.Top,
+                        (int) currentAppWindow.ActualWidth, (int) currentAppWindow.ActualHeight
                         );
                     bottomcorner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
                     topcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
                     retDict["Left"] = bottomcorner.X - windowRef.ActualWidth - 5;
-                    retDict["Top"] = topcorner.Y+ 25;
+                    retDict["Top"] = topcorner.Y + 25;
                     break;
                 default:
                     //ToasterPosition.PrimaryScreenBottomRight
@@ -262,20 +322,18 @@ namespace netoaster
                     retDict["Top"] = bottomcorner.Y - windowRef.ActualHeight;
                     break;
             }
-            return retDict;
 
+            return retDict;
         }
 
-        private static Matrix getTransform(Window windowRef)
+        private static Matrix GetTransform(Visual visual)
         {
-            var presentationSource = PresentationSource.FromVisual(windowRef);
-            if (presentationSource != null)
+            var presentationSource = PresentationSource.FromVisual(visual);
+            if (presentationSource?.CompositionTarget != null)
             {
-                if (presentationSource.CompositionTarget != null)
-                {
-                    return presentationSource.CompositionTarget.TransformFromDevice;
-                }
+                return presentationSource.CompositionTarget.TransformFromDevice;
             }
+
             return new Matrix();
         }
     }

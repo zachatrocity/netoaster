@@ -1,38 +1,41 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using netoaster;
 
-public partial class SuccessToaster
+namespace netoaster
 {
-    private SuccessToaster(string message, ToasterPosition position, ToasterAnimation animation, double margin)
+    public partial class SuccessToaster
     {
-        InitializeComponent();
-
-        var msgText = (System.Windows.Documents.Run) SuccessToasterInstance.FindName("MessageString");
-        if (msgText != null) msgText.Text = message ?? string.Empty;
-
-        Storyboard story = ToastSupport.GetAnimation(animation, ref SuccessToasterInstance);
-        story.Completed += (sender, args) => { this.Close(); };
-        story.Begin(SuccessToasterInstance);
-
-        Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+        private SuccessToaster(FrameworkElement owner, string title, string message, ToasterPosition position, ToasterAnimation animation, double margin)
         {
-            var topLeftDict = ToastSupport.GetTopandLeft(position, this, margin);
-            Top = topLeftDict["Top"];
-            Left = topLeftDict["Left"];
-        }));
-    }
+            InitializeComponent();
 
-    public static void Toast(string message = "Something terrible may have just happened and you are being notified of it.",
-        ToasterPosition position = ToasterPosition.PrimaryScreenTopRight, ToasterAnimation animation = ToasterAnimation.SlideInFromRight,
-        double margin = 10.0)
-    {
-        var err = new SuccessToaster(message, position, animation, margin);
-        err.Show();
-    }
+            ToasterTitle = title;
+            Message = message ?? string.Empty;
 
+            var story = ToastSupport.GetAnimation(animation, ref SuccessToasterInstance);
+            story.Completed += (sender, args) => { this.Close(); };
+            story.Begin(SuccessToasterInstance);
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            {
+                var topLeftDict = ToastSupport.GetTopandLeft(position, this, margin);
+                Top = topLeftDict["Top"];
+                Left = topLeftDict["Left"];
+            }));
+            owner.Unloaded += Owner_Unloaded;
+        }
+
+        public static void Toast(
+            Window owner,
+            string title = "Success",
+            string message = "All good.",
+            ToasterPosition position = ToasterPosition.PrimaryScreenTopRight,
+            ToasterAnimation animation = ToasterAnimation.SlideInFromRight,
+            double margin = 10.0)
+        {
+            var toaster = new SuccessToaster(owner, title, message, position, animation, margin);
+            toaster.Show();
+        }
+    }
 }
