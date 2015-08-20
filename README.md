@@ -61,6 +61,7 @@ WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
 #Contributers
 * myself
 * [jublin](https://github.com/jublin)
+* [bbougot](https://github.com/bbougot)
 	
 #Concept 
 skeleton of code came from [this](http://stackoverflow.com/questions/3034741/create-popup-toaster-notifications-in-windows-with-net/3035755#3035755, "this") stackoverflow post
