@@ -4,19 +4,18 @@ using System.Windows.Threading;
 
 namespace netoaster
 {
-    public partial class ErrorToaster
+    public partial class InfoToaster
     {
-        private ErrorToaster(FrameworkElement owner, string title, string message, ToasterPosition position, ToasterAnimation animation,
-            double margin)
+        private InfoToaster(FrameworkElement owner, string title, string message, ToasterPosition position, ToasterAnimation animation, double margin)
         {
             InitializeComponent();
 
             ToasterTitle = title;
             Message = message ?? string.Empty;
 
-            var story = ToastSupport.GetAnimation(animation, ref ErrorToasterInstance);
-            story.Completed += (sender, args) => { Close(); };
-            story.Begin(ErrorToasterInstance);
+            var story = ToastSupport.GetAnimation(animation, ref InfoToasterInstance);
+            story.Completed += (sender, args) => { this.Close(); };
+            story.Begin(InfoToasterInstance);
 
             Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
             {
@@ -30,13 +29,13 @@ namespace netoaster
 
         public static void Toast(
             Window owner,
-            string title = "Error",
-            string message = "Something terrible may have just happened and you are being notified of it.",
-            ToasterPosition position = ToasterPosition.PrimaryScreenBottomRight,
+            string title = "Info",
+            string message = "Something you may notice.",
+            ToasterPosition position = ToasterPosition.PrimaryScreenTopRight,
             ToasterAnimation animation = ToasterAnimation.SlideInFromRight,
             double margin = 10.0)
         {
-            var toaster = new ErrorToaster(owner, title, message, position, animation, margin);
+            var toaster = new InfoToaster(owner, title, message, position, animation, margin);
             toaster.Show();
         }
     }
