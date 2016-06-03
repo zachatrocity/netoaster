@@ -329,7 +329,7 @@ namespace netoaster
         private static Matrix GetTransform(Visual visual)
         {
             var presentationSource = PresentationSource.FromVisual(visual);
-            if (presentationSource?.CompositionTarget != null)
+            if (presentationSource.CompositionTarget != null)
             {
                 return presentationSource.CompositionTarget.TransformFromDevice;
             }

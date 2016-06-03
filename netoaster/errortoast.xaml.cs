@@ -25,7 +25,8 @@ namespace netoaster
                 Left = topLeftDict["Left"];
             }));
 
-            owner.Unloaded += Owner_Unloaded;
+            if(owner != null)
+                owner.Unloaded += Owner_Unloaded;
         }
 
         public static void Toast(
@@ -36,7 +37,7 @@ namespace netoaster
             ToasterAnimation animation = ToasterAnimation.SlideInFromRight,
             double margin = 10.0)
         {
-            var toaster = new ErrorToaster(owner, title, message, position, animation, margin);
+            var toaster = new ErrorToaster(owner, title, message, position, animation, margin) {ShowActivated = false};
             toaster.Show();
         }
     }
