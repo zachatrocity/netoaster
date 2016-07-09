@@ -20,22 +20,22 @@ namespace toasterdemoapp
 
         private void showerror(object sender, RoutedEventArgs e)
         {
-            ErrorToaster.Toast(this, TitleText.Text, MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            ErrorToaster.Toast(this,title: "Error", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
 
         private void showsuccess(object sender, RoutedEventArgs e)
         {
-            SuccessToaster.Toast(this, TitleText.Text, MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            SuccessToaster.Toast(this, title: "Success", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
 
         private void showwarning(object sender, RoutedEventArgs e)
         {
-            WarningToaster.Toast(this, TitleText.Text, MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            WarningToaster.Toast(this, title: "Warning", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
 
         private void showinfo(object sender, RoutedEventArgs e)
         {
-            InfoToaster.Toast(this, TitleText.Text, MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            InfoToaster.Toast(this, title: "Info", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
     }
 }
