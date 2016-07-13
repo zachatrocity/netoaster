@@ -14,7 +14,7 @@ namespace netoaster
             ToasterTitle = title;
             Message = message ?? string.Empty;
 
-            var story = ToastSupport.GetAnimation(animation, ref ErrorToasterInstance);
+            var story = ToastSupport.GetAnimation(animation, ErrorToasterInstance);
             story.Completed += (sender, args) => { Close(); };
             story.Begin(ErrorToasterInstance);
 
