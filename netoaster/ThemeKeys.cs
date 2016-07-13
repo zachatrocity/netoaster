@@ -19,6 +19,11 @@ namespace netoaster
             get { return new ComponentResourceKey(typeof(ThemeKeys), "ToastIconCanvas"); }
         }
 
+        public static ComponentResourceKey ToastIconPathKey
+        {
+            get { return new ComponentResourceKey(typeof(ThemeKeys), "ToastIconPath"); }
+        }
+
         public static ComponentResourceKey ToastTitleKey
         {
             get { return new ComponentResourceKey(typeof(ThemeKeys), "ToastTitle"); }

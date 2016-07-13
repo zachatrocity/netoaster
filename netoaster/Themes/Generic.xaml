@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:netoaster="clr-namespace:netoaster">
 
+    <SolidColorBrush x:Key="ForeroundBrush" Color="White" />
+
     <Style TargetType="{x:Type Border}"
            x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type netoaster:ThemeKeys}, ResourceId=ToastCard}">
         <Setter Property="BorderThickness" Value="1" />
@@ -19,7 +21,7 @@
         <Setter Property="Margin" Value="10,0" />
         <Setter Property="FontSize" Value="48" />
         <Setter Property="FontFamily" Value="Global User Interface" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource ForeroundBrush}" />
     </Style>
 
     <Style TargetType="{x:Type Canvas}"
@@ -29,19 +31,25 @@
         <Setter Property="Clip" Value="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" />
     </Style>
 
+    <Style TargetType="{x:Type Path}"
+           x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type netoaster:ThemeKeys}, ResourceId=ToastIconPath}">
+        <Setter Property="Stretch" Value="Fill" />
+        <Setter Property="Fill" Value="{StaticResource ForeroundBrush}" />
+    </Style>
+
     <Style TargetType="{x:Type TextBlock}"
            x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type netoaster:ThemeKeys}, ResourceId=ToastTitle}">
         <Setter Property="Margin" Value="5" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource ForeroundBrush}" />
     </Style>
 
     <Style TargetType="{x:Type TextBlock}"
            x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type netoaster:ThemeKeys}, ResourceId=ToastMessage}">
         <Setter Property="Margin" Value="5" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource ForeroundBrush}" />
     </Style>
 
 </ResourceDictionary>
