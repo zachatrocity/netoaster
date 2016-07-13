@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using netoaster;
+using System;
 
 namespace toasterdemoapp
 {
@@ -18,24 +19,38 @@ namespace toasterdemoapp
         public ToasterPosition CurrentPopupPosition { get; set; }
         public ToasterAnimation CurrentPopupAnimation { get; set; }
 
-        private void showerror(object sender, RoutedEventArgs e)
+        private void ShowError(object sender, RoutedEventArgs e)
         {
-            ErrorToaster.Toast(this,title: "Error", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            ErrorToaster.Toast(this,title: BuildTitle("Error"), message: BuildMessage(), position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
 
-        private void showsuccess(object sender, RoutedEventArgs e)
+        private void ShowSuccess(object sender, RoutedEventArgs e)
         {
-            SuccessToaster.Toast(this, title: "Success", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            SuccessToaster.Toast(this, title: BuildTitle("Success"), message: BuildMessage(), position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
 
-        private void showwarning(object sender, RoutedEventArgs e)
+        private void ShowWarning(object sender, RoutedEventArgs e)
         {
-            WarningToaster.Toast(this, title: "Warning", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            WarningToaster.Toast(this, title: BuildTitle("Warning"), message: BuildMessage(), position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
         }
 
-        private void showinfo(object sender, RoutedEventArgs e)
+        private void ShowInfo(object sender, RoutedEventArgs e)
         {
-            InfoToaster.Toast(this, title: "Info", message: MessageText.Text, position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+            InfoToaster.Toast(this, title: BuildTitle("Info"), message: BuildMessage(), position: (ToasterPosition)selectbox.SelectedItem, animation: (ToasterAnimation)aniselectbox.SelectedItem, margin: 20.0);
+        }
+
+        private string BuildTitle(string fallback)
+        {
+            return String.IsNullOrWhiteSpace(TitleText.Text)
+                ? fallback
+                : TitleText.Text;
+        }
+
+        private string BuildMessage()
+        {
+            return String.IsNullOrWhiteSpace(MessageText.Text)
+                ? "You can show your custom message here"
+                : MessageText.Text;
         }
     }
 }
