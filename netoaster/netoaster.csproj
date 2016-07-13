@@ -58,6 +58,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="warningtoast.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +77,7 @@
     <Compile Include="infotoast.xaml.cs">
       <DependentUpon>infotoast.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemeKeys.cs" />
     <Compile Include="Toaster.cs" />
     <Compile Include="ToastSupport.cs" />
     <Compile Include="warningtoast.xaml.cs">

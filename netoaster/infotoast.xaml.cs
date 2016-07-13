@@ -13,7 +13,7 @@ namespace netoaster
             ToasterTitle = title;
             Message = message ?? string.Empty;
 
-            var story = ToastSupport.GetAnimation(animation, ref InfoToasterInstance);
+            var story = ToastSupport.GetAnimation(animation, InfoToasterInstance);
             story.Completed += (sender, args) => { this.Close(); };
             story.Begin(InfoToasterInstance);
 

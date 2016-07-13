@@ -39,7 +39,7 @@ namespace netoaster
 
     internal class ToastSupport
     {
-        public static StoryBoard GetAnimation(ToasterAnimation animation, ref Grid toaster)
+        public static StoryBoard GetAnimation(ToasterAnimation animation, UIElement toaster)
         {
             var story = new Storyboard();
 
