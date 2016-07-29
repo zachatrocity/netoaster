@@ -12,24 +12,24 @@ above netoaster project into your WPF app
 2. Call it
 
 ```
-ErrorToaster.Toast("My Error Message!");
+Toaster.ShowError(this, message: "My Error Message!");
 ``` 
 
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/error.png)
 
 ```
-SuccessToaster.Toast("Success message", animation: ToasterAnimation.FadeIn);
 ```
 
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/success.png)
 
 ```
-WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
+Toaster.ShowWarning(this, message: "Warning message", position: ToasterPosition.PrimaryScreenTopRight);
 ```
 
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/warning.png)
 
 3. Optional parameters (more to come)
+	* title - the text to display in header of the toaster
 	* message - the text to display in the toaster
 	* position - the position to show the toaster, like (default is PrimaryScreenBottomRight) 
     	  * shout out to [jublin](https://github.com/jublin) 
@@ -42,8 +42,8 @@ WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
     	  * ApplicationBottomLeft
     	  * ApplicationTopLeft
     * animation - the style of the animation
-          * FadeIn
-          * SlideInFromRight (default)
+          * FadeIn (default)
+          * SlideInFromRight
           * SlideInFromLeft
           * SlideInFromTop
           * SlideInFromBottom
@@ -62,6 +62,7 @@ WarningToaster.Toast("Warning message", ToasterPosition.PrimaryScreenTopRight);
 * myself
 * [jublin](https://github.com/jublin)
 * [bbougot](https://github.com/bbougot)
+* [gregorysl](https://github.com/gregorysl)
 	
 #Concept 
 skeleton of code came from [this](http://stackoverflow.com/questions/3034741/create-popup-toaster-notifications-in-windows-with-net/3035755#3035755, "this") stackoverflow post

@@ -21,10 +21,10 @@
     </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical" Margin="20,12,0,0">
-            <Button Click="showerror" Content="ErrorToaster" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="0,5"/>
-            <Button Click="showsuccess" Content="SuccessToaster" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="0,5"/>
-            <Button Click="showwarning" Content="WarningToaster" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="0,5"/>
-            <Button Click="showinfo" Content="InfoToaster" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Margin="0,5"/>
+            <Button Click="ShowError" Content="ShowError" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="105" Margin="0,5"/>
+            <Button Click="ShowSuccess" Content="ShowSuccess" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="105" Margin="0,5"/>
+            <Button Click="ShowWarning" Content="ShowWarning" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="105" Margin="0,5"/>
+            <Button Click="ShowInfo" Content="ShowInfo" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="105" Margin="0,5"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Title" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="Bold"/>
                 <TextBox Name="TitleText" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Custom Title" VerticalAlignment="Center" Width="120" Margin="0"/>
@@ -38,7 +38,7 @@
                 <ComboBox Name="selectbox" Width="200" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectedValuePath="CurrentPopupPosition"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="animation" FontWeight="Bold"/>
+                <Label Content="Animation" FontWeight="Bold"/>
                 <ComboBox Name="aniselectbox" Width="200" ItemsSource="{Binding Source={StaticResource dataFromAnimationEnum}}" SelectedValuePath="CurrentPopupAnimation"/>
             </StackPanel>
         </StackPanel>
