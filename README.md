@@ -18,6 +18,7 @@ Toaster.ShowError(this, message: "My Error Message!");
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/error.png)
 
 ```
+Toaster.ShowSuccess(this, message: "Success message", animation: ToasterAnimation.FadeIn);
 ```
 
 ![alt tag](https://raw.github.com/zachatrocity/netoaster/master/toasterdemoapp/success.png)
