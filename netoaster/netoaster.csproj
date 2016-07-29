@@ -54,37 +54,20 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="infotoast.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="warningtoast.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="successtoast.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="errortoast.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="infotoast.xaml.cs">
-      <DependentUpon>infotoast.xaml</DependentUpon>
+    <Compile Include="ThemeKeys.cs" />
+    <Compile Include="ToasterWindow.xaml.cs">
+      <DependentUpon>ToasterWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="Toaster.cs" />
     <Compile Include="ToastSupport.cs" />
-    <Compile Include="warningtoast.xaml.cs">
-      <DependentUpon>warningtoast.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="successtoast.xaml.cs">
-      <DependentUpon>successtoast.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="errortoast.xaml.cs">
-      <DependentUpon>errortoast.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="ToasterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
