@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <title>netoaster</title>
     <authors>Zach Russell (zachatrocity)</authors>
     <owners>$author$</owners>
@@ -14,5 +14,9 @@
     <releaseNotes>Added back InfoToaster</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>toaster notification toast ngtoast</tags>
+    <dependencies>
+      <dependency id="PresentationFramework" version="4.0" />
+      <dependency id="WindowsBase" version="4.0" />
+    </dependencies>
   </metadata>
 </package>
